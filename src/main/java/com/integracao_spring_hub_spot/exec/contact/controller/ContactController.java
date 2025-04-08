@@ -1,46 +1,25 @@
 package com.integracao_spring_hub_spot.exec.contact.controller;
 
-import com.integracao_spring_hub_spot.exec.auth.service.HubspotOAuthService;
+import com.integracao_spring_hub_spot.exec.contact.service.ContactService;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/hubspot")
-class ContactController {
+public class ContactController {
 
-    private final RestTemplate restTemplate;
+    private final ContactService contactService;
 
-    public ContactController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
     }
 
     @PostMapping("/contacts")
     public ResponseEntity<String> createContact(@RequestBody Map<String, Object> contactData) {
-        if (HubspotOAuthService.accessToken == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Access token not available. Authenticate first.");
-        }
-
-        String url = "https://api.hubapi.com/crm/v3/objects/contacts";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(HubspotOAuthService.accessToken);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("properties", contactData);
-
-        HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
-
-        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+        return contactService.createContact(contactData);
     }
 
     @PostMapping("/webhook")

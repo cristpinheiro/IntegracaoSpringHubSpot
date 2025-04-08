@@ -66,4 +66,8 @@ public class HubspotOAuthService {
 
         return ResponseEntity.ok(response.getBody());
     }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
 }
