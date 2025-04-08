@@ -1,6 +1,6 @@
 package com.integracao_spring_hub_spot.exec.contact.controller;
 
-import com.integracao_spring_hub_spot.exec.auth.controller.AuthController;
+import com.integracao_spring_hub_spot.exec.auth.service.HubspotOAuthService;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,14 +24,14 @@ class ContactController {
 
     @PostMapping("/contacts")
     public ResponseEntity<String> createContact(@RequestBody Map<String, Object> contactData) {
-        if (AuthController.accessToken == null) {
+        if (HubspotOAuthService.accessToken == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Access token not available. Authenticate first.");
         }
 
         String url = "https://api.hubapi.com/crm/v3/objects/contacts";
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(AuthController.accessToken);
+        headers.setBearerAuth(HubspotOAuthService.accessToken);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String, Object> requestBody = new HashMap<>();
