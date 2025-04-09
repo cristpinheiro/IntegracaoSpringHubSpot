@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/hubspot/oauth")
+@RequestMapping("/hubspot/auth")
 public class AuthController {
 
     private final HubspotOAuthService authService;
@@ -20,7 +20,7 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @GetMapping("/auth")
+    @GetMapping()
     public void redirectToHubspotAuth(HttpServletResponse response) throws IOException {
         String redirectUrl = authService.buildAuthUrl();
         response.sendRedirect(redirectUrl);
