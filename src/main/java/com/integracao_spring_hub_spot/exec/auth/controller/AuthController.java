@@ -1,6 +1,6 @@
 package com.integracao_spring_hub_spot.exec.auth.controller;
 
-import com.integracao_spring_hub_spot.exec.auth.service.HubspotOAuthService;
+import com.integracao_spring_hub_spot.exec.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +14,9 @@ import java.io.IOException;
 @RequestMapping("/hubspot/auth")
 public class AuthController {
 
-    private final HubspotOAuthService authService;
+    private final AuthService authService;
 
-    public AuthController(HubspotOAuthService authService) {
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 

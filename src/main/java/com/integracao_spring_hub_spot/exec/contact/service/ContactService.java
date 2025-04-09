@@ -1,6 +1,6 @@
 package com.integracao_spring_hub_spot.exec.contact.service;
 
-import com.integracao_spring_hub_spot.exec.auth.service.HubspotOAuthService;
+import com.integracao_spring_hub_spot.exec.auth.service.AuthService;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,9 +12,9 @@ import java.util.Map;
 public class ContactService {
 
     private final RestTemplate restTemplate;
-    private final HubspotOAuthService authService;
+    private final AuthService authService;
 
-    public ContactService(RestTemplate restTemplate, HubspotOAuthService authService) {
+    public ContactService(RestTemplate restTemplate, AuthService authService) {
         this.restTemplate = restTemplate;
         this.authService = authService;
     }

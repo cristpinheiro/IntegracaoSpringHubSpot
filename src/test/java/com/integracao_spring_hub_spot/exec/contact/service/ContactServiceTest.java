@@ -1,6 +1,6 @@
 package com.integracao_spring_hub_spot.exec.contact.service;
 
-import com.integracao_spring_hub_spot.exec.auth.service.HubspotOAuthService;
+import com.integracao_spring_hub_spot.exec.auth.service.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -20,13 +20,13 @@ import static org.mockito.Mockito.*;
 class ContactServiceTest {
 
     private RestTemplate restTemplate;
-    private HubspotOAuthService authService;
+    private AuthService authService;
     private ContactService contactService;
 
     @BeforeEach
     void setup() {
         restTemplate = mock(RestTemplate.class);
-        authService = mock(HubspotOAuthService.class);
+        authService = mock(AuthService.class);
         contactService = new ContactService(restTemplate, authService);
     }
 

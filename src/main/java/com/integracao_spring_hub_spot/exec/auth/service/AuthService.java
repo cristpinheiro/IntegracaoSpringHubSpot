@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class HubspotOAuthService {
+public class AuthService {
 
     @Value("${hubspot.client-id}")
     private String clientId;
@@ -26,7 +26,7 @@ public class HubspotOAuthService {
 
     private final RestTemplate restTemplate;
 
-    public HubspotOAuthService(RestTemplate restTemplate) {
+    public AuthService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
