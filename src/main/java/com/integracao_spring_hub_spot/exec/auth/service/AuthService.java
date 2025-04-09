@@ -13,16 +13,16 @@ import java.util.UUID;
 public class AuthService {
 
     @Value("${hubspot.client-id}")
-    private String clientId;
+    String clientId;
 
     @Value("${hubspot.client-secret}")
-    private String clientSecret;
+    String clientSecret;
 
     @Value("${hubspot.redirect-uri}")
-    private String redirectUri;
+    String redirectUri;
 
     @Value("${hubspot.scopes}")
-    private String scopes;
+    String scopes;
 
     private final RestTemplate restTemplate;
 
