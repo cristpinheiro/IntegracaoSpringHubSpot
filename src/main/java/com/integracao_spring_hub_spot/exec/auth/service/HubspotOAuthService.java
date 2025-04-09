@@ -58,7 +58,7 @@ public class HubspotOAuthService {
         params.add("code", code);
 
         HttpEntity<LinkedMultiValueMap<Object, Object>> request = new HttpEntity<>(params, headers);
-        ResponseEntity<Map> response = restTemplate.postForEntity(TOKEN_URL, request, Map.class);
+        var response = restTemplate.postForEntity(TOKEN_URL, request, Map.class);
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             accessToken = (String) response.getBody().get("access_token");
